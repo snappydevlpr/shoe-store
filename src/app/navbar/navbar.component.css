@@ -1,0 +1,102 @@
+nav{
+    display: flex;
+    background-color: black;
+    align-items: center;
+}
+
+#site-title{
+    color: white;
+    padding: 10px 20px;
+}
+
+.menu-buttons{
+    color: white;
+    margin: 10px;
+    text-decoration: none;
+}
+
+#menu-button{
+    background: none;
+    border: none;
+    padding: 0;
+    width: 70px;
+    height: 100%;
+}
+
+#menu-button-img{
+    width: 70px;
+    height: 50px;
+}
+
+
+
+@media only screen and (max-width: 2560px)  {
+    #site-title{
+        font-size: 42pt;
+    }
+    
+    #menu-button{
+        display: none;
+    }
+}
+
+
+@media only screen and (max-width: 1440px)  {
+    #site-title{
+        font-size: 32pt;
+    }
+    
+    #menu-button{
+        display: none;
+    }
+}
+
+
+@media only screen and (max-width: 1024px)  {
+    #site-title{
+        font-size: 28pt;
+    }
+    
+    #menu-button{
+        display: none;
+    }
+}
+
+
+@media only screen and (max-width: 768px)  {
+    #site-title{
+        font-size: 24pt;
+    }
+    
+    #menu-button{
+        display: none;
+    }
+}
+
+@media  only screen and (max-width: 425px) {
+    nav{
+        justify-content: space-between;
+    }
+
+    #site-title{
+        font-size: 24pt;
+    }
+
+    #menu-text{
+        display: none;
+    }
+
+    #menu-button{
+        display: block;
+    }
+}
+
+@media only screen and (max-width: 375px)  {
+    #site-title{
+        font-size: 18pt;
+    }
+}
+
+@media only screen and (max-width: 320px)  {
+    
+}
