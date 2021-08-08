@@ -2,12 +2,31 @@
     <h1 id="site-title">Shoe Store</h1>
 
     <div id="menu-text">
-        <a class="menu-buttons" href="">Shoes</a>
-        <a class="menu-buttons" href="">Contact</a>
+        <button class="menu-buttons" (click)="dropdownMenuToggle()">Shoes</button>
+        <button class="menu-buttons">Contact</button>
     </div>
 
-    <button id="menu-button"> 
+    <button (click)="dropdownMenuMobileToggle()" id="menu-button"> 
         <img id="menu-button-img" src="../../assets/menu-bars-white.png" alt="menu-icon">
     </button>
       
 </nav>
+
+<div id="dropdown-menu">
+    <ul class="menu-grid">
+        <li class="menu-grid-option">Shoe</li>
+        <li class="menu-grid-option">Shoe</li>
+        <li class="menu-grid-option">Shoe</li>
+        <li class="menu-grid-option">Shoe</li>
+        <li class="menu-grid-option">Shoe</li>
+        <li class="menu-grid-option">Shoe</li>
+        <li class="menu-grid-option">Shoe</li>
+        <li class="menu-grid-option">Shoe</li>
+    </ul>
+</div>
+
+<ul id="mobile-menu">
+    <li class="mobile-menu">Shoes</li>
+    <li class="mobile-menu">Contact</li>
+    <li class="mobile-menu">About</li>
+</ul>
