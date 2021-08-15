@@ -1,27 +1,67 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, of, from, fromEvent } from 'rxjs';
+import { fromEvent } from 'rxjs';
 import { debounceTime, map } from 'rxjs/operators';
+import { trigger, transition, style, animate, state, sequence } from '@angular/animations';
+declare var anime: any;                                  // declare like this
+
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
-})
-export class NavbarComponent implements OnInit {
+  styleUrls: ['./navbar.component.css'],
+  animations: [
+    trigger('openClose', [
+      state('show', style({
+        opacity: 1,
+        transform: "none" 
+      })),
+      
+      transition('* => show', [
+      sequence([
+        animate('500ms ease',style({
+          opacity: 1,
+          transform: "none" 
+        }))
+      ])
+      ]),
+    ]),
 
+    trigger('mobileMenuOpenClose', [
+      state('mobileShow', style({
+        opacity: 1,
+        transform: "none",
+      })),
+      
+      transition('* => mobileShow', [
+      sequence([
+        animate('500ms ease',style({
+          opacity: 1,
+          transform: "none" 
+        }))
+      ])
+      ]),
+    ]),
+  
+  ],
+})
+
+export class NavbarComponent implements OnInit {
+  menuDropdown:boolean = false;
+  mobileMenuDropdown:boolean = false;
+  mobileFormat:boolean = false;
+  isMobile:boolean = false
   constructor() { }
 
   ngOnInit(): void {
     // Checks if screen size is less than 1024 pixels
     const checkScreenSize = () => {
       if(document.body.offsetWidth <= 425){
-        document.getElementById("dropdown-menu")?.style.setProperty("display","none");
+        console.log(document.body.offsetWidth)
+        this.isMobile = true
       }
       else{
-        document.getElementById("mobile-menu")?.style.setProperty("display","none");
-
+        this.isMobile = false
       }
-      console.log(document.body.offsetWidth)
     };
 
     // Create observable from window resize event
@@ -30,25 +70,33 @@ export class NavbarComponent implements OnInit {
     screenSizeChanged$.subscribe()
   }
 
-  dropdownMenuToggle(){
-    if(document.getElementById("dropdown-menu")?.style.display == "block"){
-      document.getElementById("dropdown-menu")?.style.setProperty("display","none");
+  //menu animation state changes 
+  getMenuState(){
+    return this.menuDropdown? 'show':'hide';
+  }
 
+  //mobile menu animation state changes
+  getMobileMenuState(){
+    return this.mobileMenuDropdown? 'mobileShow':'mobilehide';
+  }
+
+  //menu toggling animations 
+  dropdownMenuToggle(){
+    if(this.menuDropdown){
+      this.menuDropdown = false;
     }
     else{
-      document.getElementById("dropdown-menu")?.style.setProperty("display","block");
-
+      this.menuDropdown = true;
     }
   }
 
+  //mobile menu toggling animations
   dropdownMenuMobileToggle(){
-    if(document.getElementById("mobile-menu")?.style.display == "block"){
-      document.getElementById("mobile-menu")?.style.setProperty("display","none");
-
+    if(this.mobileMenuDropdown){
+      this.mobileMenuDropdown = false;
     }
     else{
-      document.getElementById("mobile-menu")?.style.setProperty("display","block");
-
+      this.mobileMenuDropdown = true;
     }
   }
 }
