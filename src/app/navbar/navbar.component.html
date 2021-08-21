@@ -1,18 +1,54 @@
 <nav>
-    <h1 id="site-title">Shoe Store</h1>
+    <!-- desktop menu -->
+    <div *ngIf='!isMobile' class="desktop-menu">
+        <!-- site title -->
+        <h1 id="site-title">Shoe Store</h1>
 
-    <div id="menu-text">
-        <button class="menu-buttons" (click)="dropdownMenuToggle()">Shoes</button>
-        <button class="menu-buttons">Contact</button>
+        <!-- menu section for categories -->
+        <div class="desktop-menu-bar">
+            <button class="menu-buttons" (click)="dropdownMenuToggle()">New Releases</button>
+            <button class="menu-buttons">Men</button>
+            <button class="menu-buttons">Women</button>
+            <button class="menu-buttons">Kids</button>
+            <button class="menu-buttons">Sale</button>
+        </div>
+
+        <!-- icon menus -->
+        <div class="icon-menu">
+            
+            <div class="search-form">
+                <mat-icon>search</mat-icon>
+                <input class="search-entry" type="button" value="Search">
+            </div>
+        
+            <button class="menu-buttons">
+                <img class="mobile-icon" id="cart-icon" src="../../assets/cart-icon.png" alt="cart-icon">
+            </button>
+        </div>
+
     </div>
 
-    <button (click)="dropdownMenuMobileToggle()" id="menu-button"> 
-        <img id="menu-button-img" src="../../assets/menu-bars-white.png" alt="menu-icon">
-    </button>
-      
-</nav>
+    <!-- mobile menu -->
+    <div class="mobile-nav" *ngIf='isMobile'>
+            <h1 id="site-title">Shoe Store</h1>
+        <div>
+            <button class="menu-buttons">
+                <img class="mobile-icon" src="../../assets/outline_search_white.png" alt="search-icon">
+            </button>
+            <button class="menu-buttons">
+                <img class="mobile-icon" src="../../assets/cart-icon.png" alt="cart-icon">
+            </button>
+            <button (click)="dropdownMenuMobileToggle()" class="menu-buttons">
+                <img class="mobile-icon" src="../../assets/menu-icon.png" alt="menu-icon">
+            </button>
+        </div>
+       
+    </div>
 
-<div id="dropdown-menu">
+
+</nav>
+<!-- desktop dropdown -->
+<div *ngIf='!isMobile' [@openClose]="getMenuState()" id="dropdown-menu" class="dropdown-menu">
     <ul class="menu-grid">
         <li class="menu-grid-option">Shoe</li>
         <li class="menu-grid-option">Shoe</li>
@@ -25,8 +61,9 @@
     </ul>
 </div>
 
-<ul id="mobile-menu">
-    <li class="mobile-menu">Shoes</li>
-    <li class="mobile-menu">Contact</li>
-    <li class="mobile-menu">About</li>
-</ul>
+<!--  -->
+<div *ngIf='isMobile' [@mobileMenuOpenClose]="getMobileMenuState()" id="mobile-menu" class="mobile-menu">
+    <ul class="menu-grid">
+        <li class="menu-grid-option"> Shoes</li>
+    </ul>
+</div>

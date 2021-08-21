@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { debounceTime, map } from 'rxjs/operators';
 import { trigger, transition, style, animate, state, sequence } from '@angular/animations';
-declare var anime: any;                                  // declare like this
-
 
 @Component({
   selector: 'app-navbar',
