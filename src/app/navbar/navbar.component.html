@@ -2,8 +2,7 @@
     <!-- desktop menu -->
     <div *ngIf='!isMobile' class="desktop-menu">
         <!-- site title -->
-        <h1 id="site-title">Shoe Store</h1>
-
+        <img id="site-title" src="../../assets/shoe-icon.png" alt="Shoe Store Logo">
         <!-- menu section for categories -->
         <div class="desktop-menu-bar">
             <button class="menu-buttons" (click)="dropdownMenuToggle()">New Releases</button>
@@ -30,7 +29,7 @@
 
     <!-- mobile menu -->
     <div class="mobile-nav" *ngIf='isMobile'>
-            <h1 id="site-title">Shoe Store</h1>
+        <img id="site-title" src="../../assets/shoe-icon.png" alt="Shoe Store Logo">
         <div>
             <button class="menu-buttons">
                 <mat-icon class="mobile-icon">shopping_bag</mat-icon>

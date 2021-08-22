@@ -9,9 +9,10 @@ nav{
 }
 
 #site-title{
-    color: white;
-    padding: 10px;
+    height: 30px;
+    width: 43px;
     z-index: 4;
+    align-self: center;
 }
 
 /* desktop */
@@ -75,8 +76,8 @@ nav{
     align-items: center;
     display: flex;
     justify-content: space-between;
-    padding: 0 38px
-
+    padding: 0 38px;
+    height: 100%;
 }
 
 .mobile-icon{
@@ -216,6 +217,11 @@ nav{
     .menu-grid-option{
         font-size: 12pt;
     }
+
+    .search-expand{
+        right: 50px;
+        width: 75px;
+    }
 }
 
 @media  only screen and (max-width: 425px) {
@@ -243,12 +249,24 @@ nav{
 }
 
 @media only screen and (max-width: 375px)  {
-    #site-title{
-        font-size: 18pt;
-    }
 
+    .mobile-nav{
+        padding: 0 14px 0 16px;
+    }
+    .search-expand{
+        right: 25px;
+        width: 75px;
+    }
 }
 
 @media only screen and (max-width: 320px)  {
+    .mobile-nav{
+        padding: 0 14px 0 16px;
+    }
 
+    .search-expand{
+        right: 25px;
+        width: 75px;
+    }
+    
 }

@@ -50,7 +50,7 @@ import { trigger, transition, style, animate, state, sequence } from '@angular/a
       
       transition('* => expandSearch', [
       sequence([
-        animate('500ms ease',style({
+        animate('300ms linear',style({
           zIndex: 5,
           width: "100%", 
           right: "0",
