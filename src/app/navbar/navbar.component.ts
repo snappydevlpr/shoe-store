@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { fromEvent } from 'rxjs';
+import { fromEvent, observable, Observable } from 'rxjs';
 import { debounceTime, map } from 'rxjs/operators';
 import { trigger, transition, style, animate, state, sequence } from '@angular/animations';
 
@@ -40,32 +40,64 @@ import { trigger, transition, style, animate, state, sequence } from '@angular/a
       ]),
     ]),
   
+    trigger('expandedSearch', [
+      state('expandSearch', style({
+        zIndex: 5,
+        width: "100%",
+        right: "0",
+
+      })),
+      
+      transition('* => expandSearch', [
+      sequence([
+        animate('500ms ease',style({
+          zIndex: 5,
+          width: "100%", 
+          right: "0",
+
+        }))
+      ])
+      ]),
+
+    ]),
+
   ],
 })
 
 export class NavbarComponent implements OnInit {
+  expandSearchSwitch:boolean = false;
+  isMobile:boolean = false
   menuDropdown:boolean = false;
   mobileMenuDropdown:boolean = false;
-  mobileFormat:boolean = false;
-  isMobile:boolean = false
-  constructor() { }
+  
+  constructor() {
+   }
 
   ngOnInit(): void {
+    
+    var mobileSizeLimit = 768
     // Checks if screen size is less than 1024 pixels
-    const checkScreenSize = () => {
-      if(document.body.offsetWidth <= 425){
-        console.log(document.body.offsetWidth)
-        this.isMobile = true
+    fromEvent(window,'resize').subscribe(
+      x => {
+        if(document.body.offsetWidth <= mobileSizeLimit){
+          this.isMobile = true
+        }
+        else{
+          this.isMobile = false
+        }
       }
-      else{
-        this.isMobile = false
+    )
+      
+    fromEvent(window,'load').subscribe(
+      x => {
+        if(document.body.offsetWidth <= mobileSizeLimit){
+          this.isMobile = true
+        }
+        else{
+          this.isMobile = false
+        }
       }
-    };
-
-    // Create observable from window resize event
-    const screenSizeChanged$ = fromEvent(window, 'resize').pipe(debounceTime(100),map(checkScreenSize));
-    //creating a subscription to the resize 
-    screenSizeChanged$.subscribe()
+    )
   }
 
   //menu animation state changes 
@@ -76,6 +108,10 @@ export class NavbarComponent implements OnInit {
   //mobile menu animation state changes
   getMobileMenuState(){
     return this.mobileMenuDropdown? 'mobileShow':'mobilehide';
+  }
+
+  getExpandedSearchState(){
+    return this.expandSearchSwitch? 'expandSearch':'collapseSearch';
   }
 
   //menu toggling animations 
@@ -95,6 +131,16 @@ export class NavbarComponent implements OnInit {
     }
     else{
       this.mobileMenuDropdown = true;
+    }
+  }
+
+  expandSearch(){
+    if(this.expandSearchSwitch){
+      this.expandSearchSwitch = false;
+    }
+    else{
+      console.log('hello')
+      this.expandSearchSwitch = true;
     }
   }
 }

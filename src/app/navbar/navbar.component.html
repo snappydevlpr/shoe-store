@@ -14,18 +14,18 @@
         </div>
 
         <!-- icon menus -->
-        <div class="icon-menu">
-            
-            <div class="search-form">
+        <div class="icon-menu">          
+            <button (click)="expandSearch()" class="search-form">
                 <mat-icon>search</mat-icon>
-                <input class="search-entry" type="button" value="Search">
-            </div>
-        
+                <p class="search-entry"  type="button" value="Search"></p>
+            </button>
             <button class="menu-buttons">
-                <img class="mobile-icon" id="cart-icon" src="../../assets/cart-icon.png" alt="cart-icon">
+                <mat-icon class="mobile-icon">favorite_border</mat-icon>
+            </button>
+            <button class="menu-buttons">
+                <mat-icon class="mobile-icon">shopping_bag</mat-icon>
             </button>
         </div>
-
     </div>
 
     <!-- mobile menu -->
@@ -33,20 +33,30 @@
             <h1 id="site-title">Shoe Store</h1>
         <div>
             <button class="menu-buttons">
-                <img class="mobile-icon" src="../../assets/outline_search_white.png" alt="search-icon">
+                <mat-icon class="mobile-icon">shopping_bag</mat-icon>
+
             </button>
-            <button class="menu-buttons">
-                <img class="mobile-icon" src="../../assets/cart-icon.png" alt="cart-icon">
+            <button class="menu-buttons" (click)="expandSearch()">
+                <mat-icon class="mobile-icon">search</mat-icon>
             </button>
             <button (click)="dropdownMenuMobileToggle()" class="menu-buttons">
-                <img class="mobile-icon" src="../../assets/menu-icon.png" alt="menu-icon">
+                <mat-icon class="mobile-icon">menu</mat-icon>
             </button>
-        </div>
-       
+        </div>       
     </div>
 
+    <div [@expandedSearch]="getExpandedSearchState()" class="search-expand">
+        <div class="search-form-expanded">
+            <mat-icon>search</mat-icon>
+            <input class="search-entry" type="text" placeholder="Search">
+            <button class="search-button" (click)="expandSearch()">
+                <mat-icon>close</mat-icon>
+            </button>
 
+        </div>
+    </div>
 </nav>
+
 <!-- desktop dropdown -->
 <div *ngIf='!isMobile' [@openClose]="getMenuState()" id="dropdown-menu" class="dropdown-menu">
     <ul class="menu-grid">
@@ -61,7 +71,7 @@
     </ul>
 </div>
 
-<!--  -->
+<!-- mobile dropdown -->
 <div *ngIf='isMobile' [@mobileMenuOpenClose]="getMobileMenuState()" id="mobile-menu" class="mobile-menu">
     <ul class="menu-grid">
         <li class="menu-grid-option"> Shoes</li>
