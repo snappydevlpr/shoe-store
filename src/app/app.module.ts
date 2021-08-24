@@ -8,11 +8,15 @@ import { NavbarComponent } from './navbar/navbar.component';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
+import { BannerComponent } from './banner/banner.component';
+import { FeedComponent } from './feed/feed.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    BannerComponent,
+    FeedComponent
   ],
   imports: [
     BrowserModule,

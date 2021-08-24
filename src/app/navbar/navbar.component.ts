@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { fromEvent, observable, Observable } from 'rxjs';
-import { debounceTime, map } from 'rxjs/operators';
+import { fromEvent } from 'rxjs';
 import { trigger, transition, style, animate, state, sequence } from '@angular/animations';
 
 @Component({
@@ -28,13 +27,16 @@ import { trigger, transition, style, animate, state, sequence } from '@angular/a
       state('mobileShow', style({
         opacity: 1,
         transform: "none",
+        height: "100%"
+
       })),
       
       transition('* => mobileShow', [
       sequence([
         animate('500ms ease',style({
           opacity: 1,
-          transform: "none" 
+          transform: "none",
+          height:"100%"
         }))
       ])
       ]),
@@ -50,7 +52,7 @@ import { trigger, transition, style, animate, state, sequence } from '@angular/a
       
       transition('* => expandSearch', [
       sequence([
-        animate('300ms linear',style({
+        animate('200ms linear',style({
           zIndex: 5,
           width: "100%", 
           right: "0",
@@ -79,8 +81,12 @@ export class NavbarComponent implements OnInit {
     // Checks if screen size is less than 1024 pixels
     fromEvent(window,'resize').subscribe(
       x => {
+        this.menuDropdown       = false;
+        this.mobileMenuDropdown = false; 
+        this.expandSearchSwitch = false;
+
         if(document.body.offsetWidth <= mobileSizeLimit){
-          this.isMobile = true
+          this.isMobile = true;
         }
         else{
           this.isMobile = false
@@ -115,7 +121,9 @@ export class NavbarComponent implements OnInit {
   }
 
   //menu toggling animations 
-  dropdownMenuToggle(){
+  setdropdownMenuState(){
+    this.expandSearchSwitch = false;
+
     if(this.menuDropdown){
       this.menuDropdown = false;
     }
@@ -125,7 +133,9 @@ export class NavbarComponent implements OnInit {
   }
 
   //mobile menu toggling animations
-  dropdownMenuMobileToggle(){
+  setdropdownMobileMenu(){
+    this.expandSearchSwitch = false;
+
     if(this.mobileMenuDropdown){
       this.mobileMenuDropdown = false;
     }
@@ -135,11 +145,12 @@ export class NavbarComponent implements OnInit {
   }
 
   expandSearch(){
+    this.mobileMenuDropdown = false;
+    this.menuDropdown = false;
     if(this.expandSearchSwitch){
       this.expandSearchSwitch = false;
     }
     else{
-      console.log('hello')
       this.expandSearchSwitch = true;
     }
   }

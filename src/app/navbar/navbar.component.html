@@ -5,7 +5,7 @@
         <img id="site-title" src="../../assets/shoe-icon.png" alt="Shoe Store Logo">
         <!-- menu section for categories -->
         <div class="desktop-menu-bar">
-            <button class="menu-buttons" (click)="dropdownMenuToggle()">New Releases</button>
+            <button class="menu-buttons" (click)="setdropdownMenuState()">New Releases</button>
             <button class="menu-buttons">Men</button>
             <button class="menu-buttons">Women</button>
             <button class="menu-buttons">Kids</button>
@@ -38,7 +38,7 @@
             <button class="menu-buttons" (click)="expandSearch()">
                 <mat-icon class="mobile-icon">search</mat-icon>
             </button>
-            <button (click)="dropdownMenuMobileToggle()" class="menu-buttons">
+            <button (click)="setdropdownMobileMenu()" class="menu-buttons">
                 <mat-icon class="mobile-icon">menu</mat-icon>
             </button>
         </div>       
@@ -72,7 +72,38 @@
 
 <!-- mobile dropdown -->
 <div *ngIf='isMobile' [@mobileMenuOpenClose]="getMobileMenuState()" id="mobile-menu" class="mobile-menu">
-    <ul class="menu-grid">
-        <li class="menu-grid-option"> Shoes</li>
+    <ul class="mobile-menu-grid">
+        <li class="menu-mobile-grid-option"> 
+            <a href="">
+                <p class="mobile-menu-option-label">New Releases</p>
+                <mat-icon>navigate_next</mat-icon>
+            </a>
+        </li>
+
+        <li class="menu-mobile-grid-option"> 
+            <a href="">
+                <p class="mobile-menu-option-label">Mens</p>
+                <mat-icon>navigate_next</mat-icon>
+            </a>
+        </li>
+        <li class="menu-mobile-grid-option"> 
+            <a href="">
+                <p class="mobile-menu-option-label">Mens</p>
+                <mat-icon>navigate_next</mat-icon>
+            </a>
+        </li>
+        <li class="menu-mobile-grid-option"> 
+            <a href="">
+                <p class="mobile-menu-option-label">Mens</p>
+                <mat-icon>navigate_next</mat-icon>
+            </a>
+        </li>
+        <li class="menu-mobile-grid-option"> 
+            <a href="">
+                <p class="mobile-menu-option-label">Mens</p>
+                <mat-icon>navigate_next</mat-icon>
+            </a>
+        </li>
+
     </ul>
 </div>
