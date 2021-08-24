@@ -73,11 +73,11 @@ export class NavbarComponent implements OnInit {
   mobileMenuDropdown:boolean = false;
   
   constructor() {
-   }
+  }
 
   ngOnInit(): void {
     
-    var mobileSizeLimit = 768
+    var mobileSizeLimit = 1024
     // Checks if screen size is less than 1024 pixels
     fromEvent(window,'resize').subscribe(
       x => {
@@ -85,7 +85,7 @@ export class NavbarComponent implements OnInit {
         this.mobileMenuDropdown = false; 
         this.expandSearchSwitch = false;
 
-        if(document.body.offsetWidth <= mobileSizeLimit){
+        if(document.body.offsetWidth < mobileSizeLimit){
           this.isMobile = true;
         }
         else{
